@@ -1,0 +1,28 @@
+# FastAPI и зависимости
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+pydantic==2.5.0
+pydantic-settings==2.1.0
+
+# База данных
+sqlalchemy==2.0.23
+asyncpg==0.29.0
+alembic==1.13.1
+
+# Поиск
+elasticsearch==8.11.0
+
+# Мониторинг и логирование
+prometheus-client==0.19.0
+sentry-sdk[fastapi]==1.38.0
+
+# Утилиты
+python-multipart==0.0.6
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+python-dateutil==2.8.2
+
+# Разработка
+pytest==7.4.3
+pytest-asyncio==0.21.1
+httpx==0.25.2

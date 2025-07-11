@@ -1,0 +1,239 @@
+@import 'antd/dist/reset.css';
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* Кастомные стили для админки */
+.admin-layout {
+  min-height: 100vh;
+}
+
+.admin-content {
+  padding: 24px;
+  background: #f0f2f5;
+  min-height: calc(100vh - 64px);
+}
+
+.dashboard-card {
+  margin-bottom: 16px;
+}
+
+.spider-status-running {
+  color: #52c41a;
+}
+
+.spider-status-stopped {
+  color: #ff4d4f;
+}
+
+.spider-status-error {
+  color: #faad14;
+}
+
+.real-time-logs {
+  background: #001529;
+  color: #fff;
+  font-family: 'Courier New', monospace;
+  padding: 16px;
+  border-radius: 6px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.log-entry {
+  margin-bottom: 4px;
+  font-size: 12px;
+}
+
+.log-entry.error {
+  color: #ff7875;
+}
+
+.log-entry.warning {
+  color: #ffc069;
+}
+
+.log-entry.info {
+  color: #91d5ff;
+}
+
+.log-entry.success {
+  color: #95de64;
+}
+
+/* Анимации */
+.fade-in {
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .admin-content {
+    padding: 16px;
+  }
+}
+
+/* Кастомизация Ant Design */
+.ant-layout-sider-collapsed .ant-menu-item-icon {
+  font-size: 16px;
+}
+
+.ant-pro-layout .ant-layout-header {
+  padding: 0 24px;
+}
+
+/* Статистические карточки */
+.stat-card {
+  text-align: center;
+  padding: 24px;
+}
+
+.stat-card .stat-number {
+  font-size: 30px;
+  font-weight: bold;
+  color: #1890ff;
+  margin-bottom: 8px;
+}
+
+.stat-card .stat-title {
+  color: #666;
+  font-size: 14px;
+}
+
+/* Графики */
+.chart-container {
+  padding: 16px;
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Таблицы */
+.admin-table .ant-table-thead > tr > th {
+  background: #fafafa;
+  font-weight: 600;
+}
+
+/* Формы */
+.admin-form {
+  max-width: 600px;
+}
+
+.admin-form .ant-form-item-label > label {
+  font-weight: 500;
+}
+
+/* Кнопки действий */
+.action-buttons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.action-buttons .ant-btn {
+  margin: 0;
+}
+
+/* Статусы */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.status-badge.success {
+  background: #f6ffed;
+  color: #52c41a;
+  border: 1px solid #b7eb8f;
+}
+
+.status-badge.error {
+  background: #fff2f0;
+  color: #ff4d4f;
+  border: 1px solid #ffccc7;
+}
+
+.status-badge.warning {
+  background: #fffbe6;
+  color: #faad14;
+  border: 1px solid #ffe58f;
+}
+
+.status-badge.info {
+  background: #e6f7ff;
+  color: #1890ff;
+  border: 1px solid #91d5ff;
+}
+
+/* Загрузка */
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+}
+
+/* Пустое состояние */
+.empty-state {
+  text-align: center;
+  padding: 48px 24px;
+  color: #999;
+}
+
+.empty-state .empty-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+  color: #d9d9d9;
+}
+
+.empty-state .empty-title {
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: #666;
+}
+
+.empty-state .empty-description {
+  font-size: 14px;
+  color: #999;
+}

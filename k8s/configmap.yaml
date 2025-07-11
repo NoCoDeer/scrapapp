@@ -1,0 +1,60 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: job-scraper-config
+  namespace: job-scraper
+data:
+  # Общие настройки
+  ENVIRONMENT: "production"
+  LOG_LEVEL: "INFO"
+  
+  # База данных
+  DB_HOST: "postgres"
+  DB_PORT: "5432"
+  DB_NAME: "jobscraper"
+  DB_USER: "jobscraper"
+  
+  # Redis
+  REDIS_HOST: "redis"
+  REDIS_PORT: "6379"
+  REDIS_DB: "0"
+  
+  # Elasticsearch
+  ELASTICSEARCH_HOST: "elasticsearch"
+  ELASTICSEARCH_PORT: "9200"
+  
+  # API настройки
+  API_HOST: "0.0.0.0"
+  API_PORT: "8000"
+  
+  # Celery настройки
+  CELERY_BROKER_URL: "redis://redis:6379/0"
+  CELERY_RESULT_BACKEND: "redis://redis:6379/0"
+  
+  # Scrapy настройки
+  SCRAPY_SETTINGS_MODULE: "scraper.settings"
+  
+  # Прокси настройки (пример)
+  PROXIES: "http://proxy1:8080,http://proxy2:8080"
+  
+  # Мониторинг
+  PROMETHEUS_PORT: "9090"
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: job-scraper-secrets
+  namespace: job-scraper
+type: Opaque
+data:
+  # База данных (base64 encoded)
+  DB_PASSWORD: cGFzc3dvcmQ=  # password
+  
+  # API ключ (base64 encoded)
+  API_KEY: c3VwZXJzZWNyZXQ=  # supersecret
+  
+  # Sentry DSN (base64 encoded)
+  SENTRY_DSN: ""
+  
+  # Другие секреты
+  SECRET_KEY: bXlzZWNyZXRrZXk=  # mysecretkey

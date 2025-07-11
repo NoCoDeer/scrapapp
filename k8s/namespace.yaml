@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: job-scraper
+  labels:
+    name: job-scraper
+    app: job-scraper
