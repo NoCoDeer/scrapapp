@@ -80,7 +80,23 @@
 - Python 3.11+ (для локальной разработки)
 - Node.js 18+ (для фронтенда)
 
-### Запуск с Docker Compose
+### Быстрая установка на сервер
+
+Для быстрой установки без системных обновлений (избегает проблем с диалогами ядра):
+
+```bash
+curl -sSL https://raw.githubusercontent.com/NoCoDeer/scrapapp/main/quick-install.sh | sudo bash -s scrap.zhigimont.ru
+```
+
+### Полная установка с HTTPS
+
+Для полной установки с SSL сертификатами:
+
+```bash
+curl -sSL https://raw.githubusercontent.com/NoCoDeer/scrapapp/main/install.sh | sudo bash -s scrap.zhigimont.ru
+```
+
+### Локальная разработка с Docker Compose
 
 1. **Клонируйте репозиторий:**
 ```bash
