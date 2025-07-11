@@ -67,19 +67,30 @@ check_command() {
 install_dependencies() {
     print_info "📦 Установка зависимостей..."
     
-    # Обновление пакетов
-    apt-get update -qq
+    # Настройка неинтерактивного режима
+    export DEBIAN_FRONTEND=noninteractive
+    export NEEDRESTART_MODE=a
+    export NEEDRESTART_SUSPEND=1
+    
+    # Настройка автоматических ответов для диалогов
+    echo 'libc6 libraries/restart-without-asking boolean true' | debconf-set-selections
+    echo 'libssl1.1:amd64 libraries/restart-without-asking boolean true' | debconf-set-selections
+    
+    # Обновление пакетов с неинтерактивными флагами
+    apt-get update -qq -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold"
     
     # Установка базовых пакетов
-    apt-get install -y curl wget git unzip software-properties-common apt-transport-https ca-certificates gnupg lsb-release
+    apt-get install -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" \
+        curl wget git unzip software-properties-common apt-transport-https ca-certificates gnupg lsb-release
     
     # Установка Docker
     if ! check_command docker; then
         print_info "🐳 Установка Docker..."
         curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
         echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
-        apt-get update -qq
-        apt-get install -y docker-ce docker-ce-cli containerd.io
+        apt-get update -qq -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold"
+        apt-get install -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" \
+            docker-ce docker-ce-cli containerd.io
         systemctl enable docker
         systemctl start docker
     fi
@@ -94,14 +105,15 @@ install_dependencies() {
     # Установка Nginx
     if ! check_command nginx; then
         print_info "🌐 Установка Nginx..."
-        apt-get install -y nginx
+        apt-get install -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" nginx
         systemctl enable nginx
     fi
     
     # Установка Certbot
     if ! check_command certbot; then
         print_info "🔒 Установка Certbot..."
-        apt-get install -y certbot python3-certbot-nginx
+        apt-get install -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" \
+            certbot python3-certbot-nginx
     fi
     
     print_success "Все зависимости установлены"
